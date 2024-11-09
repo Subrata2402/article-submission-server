@@ -1,0 +1,9 @@
+node_modules
+.env
+package-lock.json
+public/articles/cover-letter/*
+public/articles/menuscript/*
+public/articles/merged-script/*
+public/articles/supplementary-file/*
+public/articles/zip-files/*
+public/profile-pictures/*
