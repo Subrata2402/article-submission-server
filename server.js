@@ -11,7 +11,8 @@ require('./database/db');
 app.use(helmet());
 
 app.use(cors({
-    origin: ['https://submission.divyarasayan.org'],
+    // origin: ['https://submission.divyarasayan.org'],
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
 }));

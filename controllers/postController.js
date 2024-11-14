@@ -138,7 +138,7 @@ const sendMail = async (req, res) => {
             pass: process.env.EMAIL_HOST_PASSWORD,
         },
     });
-    
+
     try {
         const info = await transporter.sendMail({
             from: req.body.mailFrom + " <" + process.env.EMAIL_HOST + ">",
@@ -353,7 +353,13 @@ const createZip = async (req, res) => {
     try {
         const files = req.body.files;
         files.forEach(file => {
-            zip.file(file, fs.readFileSync(`public/articles/merged-script/${file}`));
+            if (file.includes('menuscript')) {
+                zip.file(file, fs.readFileSync(`public/articles/menuscript/${file}`));
+            } else if (file.includes('coverLetter')) {
+                zip.file(file, fs.readFileSync(`public/articles/cover-letter/${file}`));
+            } else {
+                zip.file(file, fs.readFileSync(`public/articles/merged-script/${file}`));
+            }
         });
         const filename = new Date().getTime();
         zip.generateNodeStream({ type: 'nodebuffer', streamFiles: true })
