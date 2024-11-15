@@ -30,7 +30,7 @@ const addArticle = async (req, res) => {
             keywords: JSON.parse(req.body.keywords),
             menuscript: req.files.menuscript[0].filename,
             coverLetter: req.files.coverLetter[0].filename,
-            supplementaryFile: req.files.supplementaryFile[0].filename,
+            supplementaryFile: req.files.supplementaryFile && req.files.supplementaryFile[0].filename,
             mergedScript: req.files.mergedScript[0].filename,
             authors: JSON.parse(req.body.authors),
             // journalId: req.body.journalId,

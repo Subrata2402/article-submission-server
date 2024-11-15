@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
                     console.log(err);
                 }
             });
-        } else if (file.fieldname === 'supplementaryFile') {
+        } else if (file && file.fieldname === 'supplementaryFile') {
             callback(null, path.join(__dirname, '../public/articles/supplementary-file'), (err) => {
                 if (err) {
                     console.log(err);

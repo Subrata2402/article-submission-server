@@ -35,7 +35,7 @@ const articleSchema = new mongoose.Schema({
     },
     supplementaryFile: {
         type: String,
-        required: true
+        required: false
     },
     mergedScript: {
         type: String,
