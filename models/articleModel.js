@@ -37,10 +37,10 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    mergedScript: {
-        type: String,
-        required: true
-    },
+    // mergedScript: {
+    //     type: String,
+    //     required: true
+    // },
     authors: [{
         firstName: {
             type: String,
@@ -75,6 +75,11 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true,
         default: 'submitted'
+    },
+    remarks: {
+        type: String,
+        required: false,
+        default: ""
     },
     finalStatus: {
         type: String,

@@ -37,7 +37,7 @@ const storage = multer.diskStorage({
         }
     },
     filename: function (req, file, callback) {
-        callback(null, file.fieldname + "-" + (Date.now() + Math.floor(100 + Math.random() * 500)) + path.extname(file.originalname), (err) => {
+        callback(null, file.fieldname + "_" + file.originalname.replaceAll(" ", "_") + path.extname(file.originalname), (err) => {
             if (err) {
                 console.log(err);
             }

@@ -31,7 +31,7 @@ const addArticle = async (req, res) => {
             menuscript: req.files.menuscript[0].filename,
             coverLetter: req.files.coverLetter[0].filename,
             supplementaryFile: req.files.supplementaryFile && req.files.supplementaryFile[0].filename,
-            mergedScript: req.files.mergedScript[0].filename,
+            // mergedScript: req.files.mergedScript[0].filename,
             authors: JSON.parse(req.body.authors),
             // journalId: req.body.journalId,
         });
@@ -353,12 +353,12 @@ const createZip = async (req, res) => {
     try {
         const files = req.body.files;
         files.forEach(file => {
-            if (file.includes('menuscript')) {
+            if (file && file.includes('menuscript')) {
                 zip.file(file, fs.readFileSync(`public/articles/menuscript/${file}`));
-            } else if (file.includes('coverLetter')) {
+            } else if (file && file.includes('coverLetter')) {
                 zip.file(file, fs.readFileSync(`public/articles/cover-letter/${file}`));
-            } else {
-                zip.file(file, fs.readFileSync(`public/articles/merged-script/${file}`));
+            } else if (file && file.includes('supplementaryFile')) {
+                zip.file(file, fs.readFileSync(`public/articles/supplementary-file/${file}`));
             }
         });
         const filename = new Date().getTime();
