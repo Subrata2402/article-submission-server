@@ -23,7 +23,8 @@ const register = async (req, res) => {
     if (userEmail) {
         return res.status(400).json({ success: false, message: "Sorry a user with this email already exists" })
     }
-    let userPhone = await Auth.findOne({ phoneNumber: req.body.phoneNumber });
+    const phoneNumber = req.body.phoneNumber.replace(/\s/g, '');
+    let userPhone = await Auth.findOne({ phoneNumber: phoneNumber });
     if (userPhone) {
         return res.status(400).json({ success: false, message: "Sorry a user with this phone number already exists" })
     }
@@ -39,7 +40,7 @@ const register = async (req, res) => {
             lastName: req.body.lastName,
             userName: req.body.userName,
             email: req.body.email,
-            phoneNumber: req.body.phoneNumber,
+            phoneNumber: phoneNumber,
             password: req.body.password,
             institution: req.body.institution,
             isReviewer: !!reviewer,
